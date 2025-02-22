@@ -6,16 +6,17 @@ class EntriesController < ApplicationController
   end
   
   def new
-    @entry = Entry.find_by({ "id" => params["place_id"] })
+    @entry = Entry.new
   end
 
   def create
     @entry = Entry.new
 
     @entry["title"] = params["title"]
-    @entry["occurred_on"] = params["occured_on"]
+    @entry["occurred_on"] = params["occurred_on"]
     @entry["description"] = params["description"]
-    
+    puts params
+
     # assign relationship between Entry and Place
     @entry["place_id"] = params["place_id"]
     @entry.save
